@@ -1,0 +1,23 @@
+{
+  "name": "backend-elven",
+  "version": "1.0.0",
+  "description": "backend baseado no teste de aplicacao elven works",
+  "main": "index.js",
+  "devDependencies": {
+    "express": "^4.21.2",
+    "prisma": "^6.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  },
+  "scripts": {
+    "start": "ts-node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Caio Cavalcanti",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^6.3.0",
+    "@types/express": "^5.0.0",
+    "cors": "^2.8.5"
+  }
+}
