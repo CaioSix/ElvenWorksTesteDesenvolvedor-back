@@ -11,6 +11,7 @@
   },
   "scripts": {
     "start": "ts-node index",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Caio Cavalcanti",
