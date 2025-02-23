@@ -11,7 +11,7 @@ diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.ERROR);
 const sdk = new NodeSDK({
   serviceName: 'clients-api',
   traceExporter: new OTLPTraceExporter({
-        url: 'http://localhost:4317',
+        url: 'http://jaeger:4317',
   }),
 
   instrumentations: [
