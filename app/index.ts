@@ -1,6 +1,7 @@
 import { inicializeTracing } from './src/instrumentation'
 inicializeTracing();
 import express from 'express';
+
 const cors = require("cors");
 import clientesRoutes from './src/routes/clientesRoutes';
 

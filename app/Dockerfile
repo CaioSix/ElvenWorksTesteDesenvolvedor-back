@@ -1,29 +1,24 @@
-# Use a imagem oficial do Node.js
-FROM node:18
+# Usa uma imagem leve do Node.js
+FROM node:18-alpine
 
-# Defina o diretório de trabalho
+# Define o diretório de trabalho
 WORKDIR /app
 
-# Copie os arquivos package.json e package-lock.json para o contêiner
+# Copia os arquivos de dependências e instala-os
 COPY package*.json ./
-
-# Instale as dependências
 RUN npm install
 
-# Copie a pasta prisma para o contêiner
-COPY prisma ./prisma
-
-# Execute a geração do cliente Prisma
-RUN npx prisma generate
-
-# Copie o restante do código da aplicação para o contêiner
+# Copia o restante do código
 COPY . .
 
-# Compile o TypeScript (se necessário)
-RUN npm run build
+# Cria um grupo e usuário não-root
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
-# Exponha a porta que o back-end usará
-EXPOSE 3000
+# Altera a propriedade dos arquivos para o usuário criado
+RUN chown -R appuser:appgroup /app
 
-# Comando para iniciar a aplicação
-CMD ["npm", "start"]
+# Define o usuário não-root para a execução do container
+USER appuser
+
+# Comando para rodar o Prisma antes de iniciar a aplicação
+CMD npx prisma db push && npm start

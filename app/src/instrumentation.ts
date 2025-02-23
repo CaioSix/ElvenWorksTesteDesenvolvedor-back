@@ -11,7 +11,7 @@ diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.ERROR);
 const sdk = new NodeSDK({
   serviceName: 'clients-api',
   traceExporter: new OTLPTraceExporter({
-    url: 'http://otel-collector:4317',
+        url: 'http://localhost:4317',
   }),
 
   instrumentations: [

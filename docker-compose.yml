@@ -33,7 +33,7 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-    command: ["npm", "start"]
+    command: [ "sh", "-c", "npx prisma db push && npm start" ]
 
   jaeger:
     image: jaegertracing/all-in-one:latest
