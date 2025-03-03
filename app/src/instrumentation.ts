@@ -1,8 +1,8 @@
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import { IncomingMessage } from 'http';
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-grpc';
+import { OTLPMetricExporter } from '@opentelemetry/exporter-metrics-otlp-grpc';
 import { HttpInstrumentation } from '@opentelemetry/instrumentation-http';
-import { KnexInstrumentation } from '@opentelemetry/instrumentation-knex';
 import { PeriodicExportingMetricReader, ConsoleMetricExporter } from '@opentelemetry/sdk-metrics';
 import { diag, DiagConsoleLogger, DiagLogLevel, SpanStatusCode } from '@opentelemetry/api';
 
@@ -34,14 +34,19 @@ const sdk = new NodeSDK({
         }
       }
     }),
-    new KnexInstrumentation()
   ],
 
+  
+
   metricReader: new PeriodicExportingMetricReader({
-    exporter: new ConsoleMetricExporter(),
+    exporter: new OTLPMetricExporter({
+      url: 'grpc://otel-collector:4317', // endpoint para métricas (ajuste conforme o collector)
+    }),
     exportIntervalMillis: 60000,
   }),
 });
+
+  
 
 process.on('beforeExit', async () => {
   await sdk.shutdown();

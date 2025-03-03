@@ -15,6 +15,11 @@ exporters:
     tls:
       insecure: true
 
+  prometheus:
+    endpoint: "0.0.0.0:9464"   # Porta onde o Collector expõe as métricas
+    namespace: "backend"       # Opcional: prefixo para suas métricas
+
+
 processors:
   batch: {}
 
@@ -31,4 +36,5 @@ service:
     metrics:
       receivers: [otlp]
       processors: [batch]
-      exporters: [debug]
+      exporters: [debug, otlp]
+      
