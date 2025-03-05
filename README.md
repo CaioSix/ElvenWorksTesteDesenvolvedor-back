@@ -4,6 +4,9 @@ Introdução
 
 Este repositório contém o backend para o teste de aplicação da ElvenWorks. Ele foi desenvolvido utilizando Node.js, Express, Prisma e OpenTelemetry para instrumentação.
 
+![image](https://github.com/user-attachments/assets/75f31490-9ffb-4651-bdb6-b5da01552e9d)
+
+
 Tecnologias Utilizadas
 
 Node.js - Ambiente de execução JavaScript no servidor.
